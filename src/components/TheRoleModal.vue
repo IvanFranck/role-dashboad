@@ -120,6 +120,10 @@ export default {
       });
     },
   },
+  updated() {
+    this.name = this.roleToEdit.role_name;
+    this.permission = this.roleToEdit.role_permission;
+  },
 };
 </script>
 
