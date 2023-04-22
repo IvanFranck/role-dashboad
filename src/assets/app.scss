@@ -1,0 +1,55 @@
+// Define variable defaults
+@import "./variable";
+
+
+//import roboto font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400;
+
+}
+
+.feather{
+    cursor: pointer;
+}
+
+//typographie
+.copy-2 {
+    font-size: .9rem;
+    line-height: 1.2;
+}
+
+.copy-primary {
+    color: $body-color
+}
+
+.copy-secondary {
+    color: $text-secondatry
+}
+
+//utilyties
+.g-1 {
+    gap: .2rem;
+}
+
+.g-2 {
+    gap: .4rem;
+}
+
+.g-3 {
+    gap: .8rem;
+}
+
+// Then import Bootstrap and BootstrapVue SCSS files (order is important)
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap-vue/src/index.scss';
