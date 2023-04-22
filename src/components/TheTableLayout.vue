@@ -12,24 +12,36 @@
     :per-page="perPage"
     :current-page="currentPage"
     :filter="filter"
-    :filter-included-fields="['role_name', 'role_permission']"
+    :filter-included-fields="[]"
     primary-key="role_name"
+    sticky-header="450px"
     no-select-on-click
     selectable
     show-empty
+    responsive
+    no-border-collapse
     hover
     @filtered="onFiltered"
     @row-selected="onRowSelected"
   >
-    <!-- TODO: handle check all tabel rows -->
-
     <template #head(selected)="">
       <b-form-checkbox @change="toggleSelectAllRows" />
     </template>
 
-    <!-- TODO: handle check one rows -->
+    <template #head(actions)="data">
+      <h6 class="text-center m-0">{{ data.label.toUpperCase() }}</h6>
+    </template>
+
     <template #cell(selected)="{ rowSelected, index }">
       <b-form-checkbox @change="handleSelectRole(index)" :checked="rowSelected" />
+    </template>
+
+    <template #table-colgroup="scope">
+      <col
+        v-for="field in scope.fields"
+        :key="field.key"
+        :style="{ width: field.key === 'actions' ? '130px' : '' }"
+      />
     </template>
 
     <template #cell(actions)="{ item, index }">
@@ -167,6 +179,11 @@ table#roles-table .flip-list-move {
 
 th {
   font-weight: 500 !important;
+}
+@supports (position: sticky) {
+  .b-table-sticky-header > .table.b-table > thead > tr > th {
+    position: sticky !important;
+  }
 }
 tbody {
   tr {
